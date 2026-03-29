@@ -53,7 +53,7 @@ try
                         // 局面の表示
                         // ----------------------------------------
                         case "pos":
-                            var text = MuzPositionView.GetPositionViewString(new MuzCoreReadonly(pos));
+                            var text = MuzPositionView.GetPositionViewString(new MuzCoreModelReadonly(pos));
                             MuzUsiLoop.SendOutput($"{text}\n", loggingSvc);
                             break;
 

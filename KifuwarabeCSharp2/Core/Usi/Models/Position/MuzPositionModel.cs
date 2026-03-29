@@ -16,7 +16,7 @@ internal class MuzPositionModel
 
     public MuzPositionModel()
     {
-        this.HandStandCollection = MuzHandStandCollectionModel.CreateEmpty();
+        this.HandStandCollection = new MuzHandStandCollectionModel();
     }
 
 

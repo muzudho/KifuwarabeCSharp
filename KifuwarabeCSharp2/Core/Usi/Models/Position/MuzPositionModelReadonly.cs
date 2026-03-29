@@ -1,6 +1,6 @@
 ﻿namespace KifuwarabeCSharp.Core.Usi.Models.Position;
 
-internal class MuzPositionReadonly
+internal class MuzPositionModelReadonly
 {
 
 
@@ -9,9 +9,9 @@ internal class MuzPositionReadonly
     // ========================================
 
 
-    public MuzPositionReadonly(MuzPositionModel pposition)
+    public MuzPositionModelReadonly(MuzPositionModel content)
     {
-        this._pposition = pposition;
+        this._content = content;
     }
 
 
@@ -20,5 +20,5 @@ internal class MuzPositionReadonly
     // ========================================
 
 
-    private MuzPositionModel _pposition;
+    private MuzPositionModel _content;
 }

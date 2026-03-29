@@ -20,7 +20,7 @@ internal static class MuzUsiLoop
     public static async Task RunAsync(
         MuzAppSettings appSettings,
         IMuzLoggingService loggingSvc,
-        Func<MuzPositionReadonly, string, string, Task> onExternalCommand)
+        Func<MuzPositionModelReadonly, string, string, Task> onExternalCommand)
     {
         var pos = new MuzPositionModel();
 
@@ -82,7 +82,7 @@ internal static class MuzUsiLoop
             // ----------------------------------------
             else if (commandName == "pos")
             {
-                await onExternalCommand(new MuzPositionReadonly(pos), commandName, rest);
+                await onExternalCommand(new MuzPositionModelReadonly(pos), commandName, rest);
             }
             // ----------------------------------------
             // 無いよ

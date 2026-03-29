@@ -5,7 +5,7 @@ using KifuwarabeCSharp.Core.Usi.Models.Position;
 /// <summary>
 /// 読取専用のコアだぜ（＾～＾）！
 /// </summary>
-internal class MuzCoreReadonly
+internal class MuzCoreModelReadonly
 {
 
 
@@ -14,8 +14,8 @@ internal class MuzCoreReadonly
     // ========================================
 
 
-    internal MuzCoreReadonly(
-        MuzPositionReadonly pos)
+    internal MuzCoreModelReadonly(
+        MuzPositionModelReadonly pos)
     {
         this.Position = pos;
     }
@@ -26,5 +26,5 @@ internal class MuzCoreReadonly
     // ========================================
 
 
-    internal MuzPositionReadonly Position { get; init; } = default!;
+    internal MuzPositionModelReadonly Position { get; init; } = default!;
 }
