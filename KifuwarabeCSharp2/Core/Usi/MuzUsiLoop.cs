@@ -131,7 +131,7 @@ internal static class MuzUsiLoop
     /// <param name="loggingSvc"></param>
     public static void SendOutput(string message, IMuzLoggingService loggingSvc)
     {
-        Console.Write(message); // 改行はもう付いてるから、ここでは付けないぜ（＾～＾）！
+        //Console.Write(message); // 改行はもう付いてるから、ここでは付けないぜ（＾～＾）！
         loggingSvc.USIProtocol.LogInformation(message);
     }
 
