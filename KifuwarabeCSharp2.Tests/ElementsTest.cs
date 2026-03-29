@@ -1,7 +1,7 @@
 ﻿namespace KifuwarabeCSharp.Tests;
 
 using KifuwarabeCSharp.Core.Usi.Elements;
-using KifuwarabeCSharp.Core.Usi.Models.Position;
+using KifuwarabeCSharp.Core.Usi.Models.Position.Elements;
 using Xunit;
 
 public class ElementsTest
@@ -37,23 +37,23 @@ public class ElementsTest
     [Fact]
     public void ColorPiece_HandStandCollection_ReturnsNumber()
     {
-        var actual = MuzHandStandCollectionModel.FromPieces(
-            bPawn: 17, bLance: 2, bKnight: 3, bSilver: 4, bGold: 1, bBishop: 2, bRook: 1,
-            wPawn: 16, wLance: 1, wKnight: 2, wSilver: 3, wGold: 4, wBishop: 1, wRook: 2);
-        Assert.Equal(expected: 17, actual.BPawn);
-        Assert.Equal(expected: 2, actual.BLance);
-        Assert.Equal(expected: 3, actual.BKnight);
-        Assert.Equal(expected: 4, actual.BSilver);
-        Assert.Equal(expected: 1, actual.BGold);
-        Assert.Equal(expected: 2, actual.BBishop);
-        Assert.Equal(expected: 1, actual.BRook);
-        Assert.Equal(expected: 16, actual.WPawn);
-        Assert.Equal(expected: 1, actual.WLance);
-        Assert.Equal(expected: 2, actual.WKnight);
-        Assert.Equal(expected: 3, actual.WSilver);
-        Assert.Equal(expected: 4, actual.WGold);
-        Assert.Equal(expected: 1, actual.WBishop);
-        Assert.Equal(expected: 2, actual.WRook);
+        var actual = new MuzHandStandCollectionModel(
+            noboriFu: 17, noboriKyo: 2, noboriKei: 3, noboriGin: 4, noboriKin: 1, noboriKaku: 2, noboriHisya: 1,
+            kudariFu: 16, kudariKyo: 1, kudariKei: 2, kudariGin: 3, kudariKin: 4, kudariKaku: 1, kudariHisya: 2);
+        Assert.Equal(expected: 17, actual.NoboriFu);
+        Assert.Equal(expected: 2, actual.NoboriKyo);
+        Assert.Equal(expected: 3, actual.NoboriKei);
+        Assert.Equal(expected: 4, actual.NoboriGin);
+        Assert.Equal(expected: 1, actual.NoboriKin);
+        Assert.Equal(expected: 2, actual.NoboriKaku);
+        Assert.Equal(expected: 1, actual.NoboriHisya);
+        Assert.Equal(expected: 16, actual.KudariFu);
+        Assert.Equal(expected: 1, actual.KudariKyo);
+        Assert.Equal(expected: 2, actual.KudariKei);
+        Assert.Equal(expected: 3, actual.KudariGin);
+        Assert.Equal(expected: 4, actual.KudariKin);
+        Assert.Equal(expected: 1, actual.KudariKaku);
+        Assert.Equal(expected: 2, actual.KudariHisya);
     }
 
 

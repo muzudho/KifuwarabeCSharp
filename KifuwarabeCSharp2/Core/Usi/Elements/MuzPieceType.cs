@@ -12,14 +12,14 @@ internal enum MuzPieceType
     Empty = 0,
     UnPromoted = 0,
     Promoted = 8,
-    BPawn = 1,      // Black Pawn
-    BLance,
-    BKnight,
-    BSilver,
-    BBishop,
-    BRook,
-    BGold,
-    BKing,
+    NoboriFu = 1,      // Black Pawn
+    NoboriKyo,
+    NoboriKei,
+    NoboriGin,
+    NoboriKaku,
+    NoboriHisya,
+    NoboriKin,
+    NoboriGyoku,
     BProPawn,       // Black Promoted Pawn
     BProLance,
     BProKnight,
@@ -27,13 +27,13 @@ internal enum MuzPieceType
     BHorse,
     BDragon,
     // BDragon = 14
-    WPawn = 17,     // White Pawn
-    WLance,
-    WKnight,
-    WSilver,
+    KudariFu = 17,     // White Pawn
+    KudariKyo,
+    KudariKei,
+    KudariGin,
     WBishop,
     WRook,
-    WGold,
+    KudariKin,
     WKing,
     WProPawn,
     WProLance,

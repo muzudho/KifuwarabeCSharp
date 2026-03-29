@@ -1,4 +1,4 @@
-﻿namespace KifuwarabeCSharp.Core.Usi.Models;
+﻿namespace KifuwarabeCSharp.Core.Usi.Models.Position;
 
 internal class MuzPositionReadonly
 {

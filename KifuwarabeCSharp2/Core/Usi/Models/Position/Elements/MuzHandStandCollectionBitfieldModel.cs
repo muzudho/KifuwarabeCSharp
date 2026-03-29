@@ -1,4 +1,4 @@
-﻿namespace KifuwarabeCSharp.Core.Usi.Models.Position;
+﻿namespace KifuwarabeCSharp.Core.Usi.Models.Position.Elements;
 /// <summary>
 ///     <pre>
 /// 両駒台の持ち駒の枚数だぜ（＾～＾）！
@@ -17,13 +17,16 @@
 /// 
 ///     </pre>
 /// </summary>
-public class MuzHandStandCollectionModel
+public class MuzHandStandCollectionBitfieldModel
 {
 
 
     // ========================================
     // 生成／破棄
     // ========================================
+
+
+    public static MuzHandStandCollectionModel CreateEmpty() => new MuzHandStandCollectionModel(bitField: 0);
 
 
     public static MuzHandStandCollectionModel FromPieces(

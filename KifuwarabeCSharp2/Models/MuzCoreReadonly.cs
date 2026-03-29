@@ -1,6 +1,6 @@
 ﻿namespace KifuwarabeCSharp.Models;
 
-using KifuwarabeCSharp.Core.Usi.Models;
+using KifuwarabeCSharp.Core.Usi.Models.Position;
 
 /// <summary>
 /// 読取専用のコアだぜ（＾～＾）！
