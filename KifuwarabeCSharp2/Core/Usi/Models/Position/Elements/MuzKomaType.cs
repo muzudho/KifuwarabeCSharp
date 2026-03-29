@@ -1,17 +1,13 @@
-﻿namespace KifuwarabeCSharp.Core.Usi.Elements;
+﻿namespace KifuwarabeCSharp.Core.Usi.Models.Position.Elements;
 
 /// <summary>
 ///		<pre>
-/// 駒
-///		B* に 16 を加算することで、W* を表す。
-///		Promoted を加算することで、成りを表す。
+/// 上下付きの駒。
 ///		</pre>
 /// </summary>
-internal enum MuzPieceType
+internal enum MuzKomaType
 {
     Empty = 0,
-    UnPromoted = 0,
-    Promoted = 8,
     NoboriFu = 1,   // ▲歩
     NoboriKyo,      // ▲香
     NoboriKei,      // ▲桂
@@ -26,7 +22,8 @@ internal enum MuzPieceType
     NoboriNariGin,  // ▲成銀
     NoboriUma,      // ▲馬
     NoboriRyu,      // ▲龍
-    // BDragon = 14
+    // 15
+    // 16
     KudariFu = 17,  // ▽歩
     KudariKyo,      // ▽香
     KudariKei,      // ▽桂
@@ -41,5 +38,5 @@ internal enum MuzPieceType
     KudariNariGin,  // ▽成銀
     KudariUma,      // ▽馬
     KudariRyu,      // ▽龍
-    PieceNone // PieceNone = 31  これを 32 にした方が多重配列のときに有利か。
+    // 31
 }

@@ -1,4 +1,4 @@
-﻿namespace KifuwarabeCSharp.Core.Usi.Elements;
+﻿namespace KifuwarabeCSharp.Core.Usi.Models.Position.Elements;
 
 /// <summary>
 ///     <pre>

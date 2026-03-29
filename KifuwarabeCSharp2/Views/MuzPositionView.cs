@@ -7,6 +7,7 @@ internal static class MuzPositionView
     public static string GetPositionViewString(
         MuzCoreModelReadonly core)
     {
+        // 持ち駒の枚数
         var h1 = core.Position.HandStandCollection.KudariHisya;
         var h2 = core.Position.HandStandCollection.KudariKaku;
         var h3 = core.Position.HandStandCollection.KudariKin;
@@ -21,6 +22,8 @@ internal static class MuzPositionView
         var h12 = core.Position.HandStandCollection.NoboriKei;
         var h13 = core.Position.HandStandCollection.NoboriKyo;
         var h14 = core.Position.HandStandCollection.NoboriFu;
+
+        // 各マスの駒
 
         return $@"[次は 1 手目 / 下の番 / 反復 0 回目]
 
