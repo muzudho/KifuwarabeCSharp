@@ -1,4 +1,4 @@
-﻿namespace KifuwarabeCSharp2.Tests;
+﻿namespace KifuwarabeCSharp.Tests;
 
 public class UnitTest1
 {
