@@ -17,7 +17,7 @@
 /// 
 ///     </pre>
 /// </summary>
-internal class MuzHandStandCollectionModel
+public class MuzHandStandCollectionModel
 {
 
 

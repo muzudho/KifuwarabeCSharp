@@ -116,24 +116,6 @@ internal static class MuzUsiLoop
                 DebugAssert(title: "左右反転", expected: MuzSujiType.Suji9, actual: MuzSujiHelper.Inverse(MuzSujiType.Suji1), loggingSvc);
                 DebugAssert(title: "左右反転", expected: MuzSujiType.Suji5, actual: MuzSujiHelper.Inverse(MuzSujiType.Suji5), loggingSvc);
             }
-            // ----------------------------------------
-            // 単体テスト　＞　両駒台の持ち駒の枚数
-            // ----------------------------------------
-            else if (commandName == "test-hand-stand-collection")
-            {
-                SendOutput($"持ち駒の表示テスト = {MuzHandStandCollectionModel.FromPieces(
-                    bPawn: 17, bLance: 2, bKnight: 3, bSilver: 4, bGold: 1, bBishop: 2, bRook: 1,
-                    wPawn: 16, wLance: 1, wKnight: 2, wSilver: 3, wGold: 4, wBishop: 1, wRook: 2).ToString()}\n", loggingSvc);
-            }
-            // ----------------------------------------
-            // 単体テスト　＞　手番
-            // ----------------------------------------
-            else if (commandName == "test-turn")
-            {
-                SendOutput($"黒を表示 = {new MuzColorModel(MuzColorType.Black).ToString()}\n", loggingSvc);
-                SendOutput($"白を表示 = {new MuzColorModel(MuzColorType.White).ToString()}\n", loggingSvc);
-                SendOutput($"エラー表示 = {new MuzColorModel(MuzColorType.None).ToString()}\n", loggingSvc);
-            }
             //
             // TODO: 単体テストは xUnit へ移行する予定だぜ（＾～＾）！
             //
