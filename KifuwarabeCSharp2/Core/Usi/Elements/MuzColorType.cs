@@ -3,7 +3,7 @@
 /// <summary>
 /// 黒番か白番かを表すぜ（＾▽＾）！
 /// </summary>
-internal enum MuzColorType
+public enum MuzColorType
 {
     Black = 0,  // 黒番
 

@@ -3,7 +3,7 @@
 /// <summary>
 /// 黒番と白番だぜ（＾▽＾）！
 /// </summary>
-internal class MuzColorModel
+public class MuzColorModel
 {
 
 
