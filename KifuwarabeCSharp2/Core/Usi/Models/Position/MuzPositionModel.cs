@@ -17,6 +17,7 @@ internal class MuzPositionModel
     public MuzPositionModel()
     {
         this.HandStandCollection = new MuzHandStandCollectionModel();
+        this.Board = new MuzBoardModel();
     }
 
 
@@ -25,5 +26,14 @@ internal class MuzPositionModel
     // ========================================
 
 
+    /// <summary>
+    /// ２つの駒台。
+    /// </summary>
     public MuzHandStandCollectionModel HandStandCollection { get; init; }
+
+
+    /// <summary>
+    /// 盤。
+    /// </summary>
+    public MuzBoardModel Board { get; init; }
 }

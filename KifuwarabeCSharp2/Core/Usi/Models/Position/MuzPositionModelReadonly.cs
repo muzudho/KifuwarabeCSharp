@@ -36,6 +36,20 @@ internal class MuzPositionModelReadonly
     private MuzHandStandCollectionModelReadonly? _handStandCollection;
 
 
+    public MuzBoardModelReadonly Board
+    {
+        get
+        {
+            if (this._board == null)
+            {
+                this._board = new MuzBoardModelReadonly(this._content.Board);
+            }
+            return this._board;
+        }
+    }
+    private MuzBoardModelReadonly? _board;
+
+
     // ========================================
     // 内部データメンバー
     // ========================================
