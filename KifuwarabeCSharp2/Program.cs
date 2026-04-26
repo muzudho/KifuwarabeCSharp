@@ -1,6 +1,7 @@
 ﻿// See https://aka.ms/new-console-template for more information
+
+using HelloConsoleAppCSharp.Core.Infrastructure;
 using KifuwarabeCSharp.Core.Usi;
-using KifuwarabeCSharp.Infrastructure;
 using KifuwarabeCSharp.Infrastructure.Configuration;
 using KifuwarabeCSharp.Infrastructure.Logging;
 using KifuwarabeCSharp.Models;
@@ -15,23 +16,55 @@ try
     // ホストビルドするぜ（＾～＾）！
     // ［ホスト］ってのは［汎用ホスト］のことで、いろいろ［サービス］っていう便利機能を付け加えることができるフレームワークみたいなもんだぜ（＾～＾）
     // それを［ビルド］するぜ（＾▽＾）
-    await MuzInfrastructureHelper.RunAsync(
+    await MuzHostHelper.RunAsync(
         commandLineArgs: args,
-        onHostEnabled: async (host) =>
+        beforeHostBuild: async (builder, executeBeforeBuild) =>
+        {
+            // お前のアプリケーションに合わせて、［サービス］を追加していってくれだぜ（＾～＾）！
+
+            MuzAppSettingsHelper.SetupBeforeHostBuild(builder);   // ［アプリケーション設定ファイル］を読み書きできるようにするための準備をするぜ（＾～＾）！
+
+            await MuzLogging.SetupBeforeHostBuildAsync( // ［ロギング］するための準備をするぜ（＾～＾）！
+                builder: builder,
+                onBootstrapLoggingEnabled: async (bootstrapLogger) =>
+                {
+                    // ここから `bootstrapLogger` を使った［ロギング］できる（＾～＾）！
+                    //bootstrapLogger.LogInformation("ホストビルド前だが、ブートストラップ・ログは出せるぜ（＾～＾）！");
+                });
+        },
+        executeBeforeBuild: (services) =>
+        {
+            // TODO
+        },
+        afterHostBuild: async (builder, services, executeAfterHostBuild) =>
+        {
+            //await onHostEnabled(host);  // ホストは有効になっているぜ（＾▽＾）！
+
+            await MuzLogging.SetupAfterHostBuildAsync(
+                configurationMgr: builder.Configuration,
+                onLoggingServiceEnabled: async () =>
+                {
+                    // ここから、以下のようにして、ロガー（ILogger）を使えるようになったぜ（＾▽＾）！
+                    //var logger = host.Services.GetRequiredService<ILogger<Program>>();
+
+                    await executeAfterHostBuild(services);
+                });
+        },
+        executeAfterHostBuild: async (services) =>
         {
             // ここからビルドされた［汎用ホスト］（host）が使えるぜ（＾▽＾）！
 
             // ［アプリケーション設定ファイル］を動作確認してみようぜ（＾～＾）
-            var appSettings = host.Services.GetRequiredService<IOptions<MuzAppSettings>>().Value;
+            var appSettings = services.GetRequiredService<IOptions<MuzAppSettings>>().Value;
             //Console.WriteLine($"AppName: {appSettings.AppName}");
             //Console.WriteLine($"ShogiEngineName: {appSettings.ShogiEngineName}");
 
             // ［ロガー］を動作確認してみようぜ（＾～＾）
-            //var logger = host.Services.GetRequiredService<ILogger<Program>>();
+            //var logger = services.GetRequiredService<ILogger<Program>>();
             //logger.LogInformation("デフォルトのログを書き込むぜ～（＾～＾）！");
 
             // ［ロガー別のログ］を動作確認してみようぜ（＾～＾）
-            var loggingSvc = host.Services.GetRequiredService<IMuzLoggingService>();
+            var loggingSvc = services.GetRequiredService<IMuzLoggingService>();
             //loggingSvc.Others.LogInformation("その他のログだぜ（＾～＾）");
             //loggingSvc.Verbose.LogInformation("大量のログだぜ（＾～＾）");
 
@@ -70,6 +103,8 @@ try
 
             //Console.WriteLine("どやさ（＾～＾）！");
         });
+
+
 }
 catch (Exception ex)
 {
@@ -78,7 +113,9 @@ catch (Exception ex)
 finally
 {
     Console.WriteLine("アプリが終了するぜ（＾～＾）！");
-    await MuzInfrastructureHelper.Cleanup();
+
+    // お前のアプリケーションに合わせて、［片付け］コードを追加していってくれだぜ（＾～＾）！
+    MuzLogging.Cleanup(); // ロガーのクリーンアップ（＾～＾）
 }
 
 // Program.cs を最後まで実行しても、必ずしもアプリケーションが終了するわけじゃないぜ（＾～＾）！

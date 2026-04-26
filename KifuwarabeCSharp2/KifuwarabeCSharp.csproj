@@ -13,11 +13,15 @@
 
   <ItemGroup>
     <None Remove="appsettings.json" />
+    <None Remove="Lib\HelloConsoleAppCSharp.Core.dll" />
   </ItemGroup>
 
   <ItemGroup>
     <Content Include="appsettings.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Lib\HelloConsoleAppCSharp.Core.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
 
@@ -29,6 +33,12 @@
     <PackageReference Include="Serilog.Settings.Configuration" Version="10.0.0" />
     <PackageReference Include="Serilog.Sinks.Console" Version="6.1.1" />
     <PackageReference Include="Serilog.Sinks.File" Version="7.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="HelloConsoleAppCSharp.Core">
+      <HintPath>Lib\HelloConsoleAppCSharp.Core.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>
