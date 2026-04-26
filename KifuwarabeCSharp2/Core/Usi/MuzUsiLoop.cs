@@ -1,6 +1,5 @@
 ﻿namespace KifuwarabeCSharp.Core.Usi;
 
-using KifuwarabeCSharp.Core.Usi.Elements;
 using KifuwarabeCSharp.Core.Usi.Models.Position;
 using KifuwarabeCSharp.Infrastructure.Configuration;
 using KifuwarabeCSharp.Infrastructure.Logging;

@@ -32,9 +32,10 @@ try
                     //bootstrapLogger.LogInformation("ホストビルド前だが、ブートストラップ・ログは出せるぜ（＾～＾）！");
                 });
         },
-        executeBeforeBuild: (services) =>
+        executeBeforeBuild: async (services) =>
         {
             // TODO
+            await Task.CompletedTask;
         },
         afterHostBuild: async (builder, services, executeAfterHostBuild) =>
         {
