@@ -1,7 +1,6 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
 using HelloConsoleAppCSharp.Core.Infrastructure;
-using HelloConsoleAppCSharp.Core.Infrastructure.REPL;
 using KifuwarabeCSharp;
 using KifuwarabeCSharp.Core.Usi.Models.Position;
 using KifuwarabeCSharp.Infrastructure.Configuration;

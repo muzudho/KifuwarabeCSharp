@@ -1,6 +1,6 @@
 ﻿namespace KifuwarabeCSharp;
 
-using HelloConsoleAppCSharp.Core.Infrastructure.REPL;
+using HelloConsoleAppCSharp.Core.Infrastructure;
 using KifuwarabeCSharp.Core.Usi.Models.Position;
 using KifuwarabeCSharp.Infrastructure.Configuration;
 using KifuwarabeCSharp.Infrastructure.Logging;
