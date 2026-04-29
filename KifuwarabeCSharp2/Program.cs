@@ -103,7 +103,7 @@ try
                 evalAsync: async (input) =>
                 {
                     // 空文字列なら、ループを続けるぜ（＾～＾）！ そうすれば、ユーザーが何か入力するまで待ち続けることができるぜ（＾～＾）！
-                    if (string.IsNullOrWhiteSpace(input)) return MuzRequestType.None;
+                    if (string.IsNullOrWhiteSpace(input)) return MuzREPLRequestType.None;
 
                     // 最初のスペースで分割（2つに分ける）
                     string[] parts = input.Split(' ', 2, StringSplitOptions.RemoveEmptyEntries);
@@ -116,32 +116,32 @@ try
                     //loggingSvc.Others.LogDebug($"最初の部分   : {commandName}");
                     //loggingSvc.Others.LogDebug($"残りの部分   : {rest}");
 
-                    if (commandName == "quit") return MuzRequestType.Exit;
+                    if (commandName == "quit") return MuzREPLRequestType.Exit;
 
                     if (commandName == "usi")
                     {
                         // 将棋の思考エンジンの名前と開発者名を返すぜ（＾▽＾）
                         SendOutput($"id name {appSettings.ShogiEngineName}\nid author {appSettings.ShogiEngineAuthor}\nusiok\n", loggingSvc);
-                        return MuzRequestType.None;
+                        return MuzREPLRequestType.None;
                     }
 
                     if (commandName == "isready")
                     {
                         // エンジンが準備できたら、"readyok" を返すぜ（＾▽＾）
                         SendOutput($"readyok\n", loggingSvc);
-                        return MuzRequestType.None;
+                        return MuzREPLRequestType.None;
                     }
 
                     if (commandName == "setoption")
                     {
                         // TODO: エンジンのオプションを設定するコマンド。これが来たら、オプションを変更する。
-                        return MuzRequestType.None;
+                        return MuzREPLRequestType.None;
                     }
 
                     if (commandName == "usinewgame")
                     {
                         // 新しいゲームの開始を知らせるコマンド。これが来たら、前のゲームの情報をクリアする。
-                        return MuzRequestType.None;
+                        return MuzREPLRequestType.None;
                     }
 
                     // ----------------------------------------
@@ -150,7 +150,7 @@ try
                     //      - 例： `position sfen lnsgkgsnl/9/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL w - 1 moves 5a6b 7g7f 3a3b`
                     if (commandName == "position")
                     {
-                        return MuzRequestType.None;
+                        return MuzREPLRequestType.None;
                     }
 
                     if (commandName == "go")
@@ -159,7 +159,7 @@ try
                         //usiOperation.Go(gameStats, pos, ssCmd);
 
                         SendOutput($"bestmove resign\n", loggingSvc);   // とりあえず投了を返すぜ（＾ｑ＾）
-                        return MuzRequestType.None;
+                        return MuzREPLRequestType.None;
                     }
 
                     // ----------------------------------------
@@ -173,14 +173,14 @@ try
                         var pos2 = new MuzPositionModelReadonly(pos);
                         var text = MuzPositionView.GetPositionViewString(new MuzCoreModelReadonly(pos2));
                         SendOutput($"{text}\n", loggingSvc);
-                        return MuzRequestType.None;
+                        return MuzREPLRequestType.None;
                     }
 
                     // ----------------------------------------
                     // 無いよ
                     // ----------------------------------------
                     SendOutput("そんなコマンド無い（＾～＾）\n", loggingSvc);
-                    return MuzRequestType.None;
+                    return MuzREPLRequestType.None;
 
 
                 }
