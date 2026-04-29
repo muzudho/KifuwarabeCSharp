@@ -41,6 +41,9 @@ internal static class MuzUsiLoop
             },
             evalAsync: async (input) =>
             {
+                // 空文字列なら、ループを続けるぜ（＾～＾）！ そうすれば、ユーザーが何か入力するまで待ち続けることができるぜ（＾～＾）！
+                if (!string.IsNullOrWhiteSpace(input)) return MuzRequestType.None;
+
                 // 最初のスペースで分割（2つに分ける）
                 string[] parts = input.Split(' ', 2, StringSplitOptions.RemoveEmptyEntries);
                 if (parts.Length == 0) throw new UnreachableException("空っぽだぜ");
@@ -125,27 +128,6 @@ internal static class MuzUsiLoop
     // ========================================
     // 内部メソッド
     // ========================================
-
-
-    public static string GetInput(IMuzLoggingService loggingSvc)
-    {
-        //Console.Write("コマンドを入力: ");
-
-        string input;
-
-        while (true)
-        {
-            input = Console.ReadLine()?.Trim() ?? "";
-
-            // 空文字列なら、ループを続けるぜ（＾～＾）！ そうすれば、ユーザーが何か入力するまで待ち続けることができるぜ（＾～＾）！
-            if (!string.IsNullOrWhiteSpace(input)) break;
-        }
-
-        loggingSvc.USIProtocol.LogInformation($"{input}\n");
-        loggingSvc.Operation.LogInformation($"[{input}]コマンドを入力しました。\n");
-
-        return input;
-    }
 
 
     /// <summary>
