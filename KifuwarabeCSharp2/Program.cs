@@ -30,10 +30,27 @@ try
                 {
                     // ここから `bootstrapLogger` を使った［ロギング］できる（＾～＾）！
                     //bootstrapLogger.LogInformation("ホストビルド前だが、ブートストラップ・ログは出せるぜ（＾～＾）！");
+
+
+                    // 📍 NOTE:
+                    //
+                    //      （あとで）ここへサービスを追加していくぜ（＾～＾）
+                    //
+                    await executeBeforeBuild(builder.Services);
+
+
                 });
         },
         executeBeforeBuild: async (services) =>
         {
+
+
+            // 📍 NOTE:
+            //
+            //      ここで、あとで［サービスの登録］とかやるぜ（＾▽＾）！
+            //
+
+
             // TODO
             await Task.CompletedTask;
         },
