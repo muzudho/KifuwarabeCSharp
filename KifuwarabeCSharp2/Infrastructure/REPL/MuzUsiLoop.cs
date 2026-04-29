@@ -33,77 +33,92 @@ internal static class MuzUsiLoop
 
         var pos = new MuzPositionModel();
 
-        // TODO: アプリのメイン処理をここに書く（＾～＾）！ USIプロトコルの処理とか（＾～＾）！
-        // 返り値は空文字列ではないぜ（＾～＾）
-        var input = GetInput(loggingSvc);
+        await MuzREPL.RunAsync(
+            printPromptAsync: async () =>
+            {
+                // プロンプトは表示しないぜ（＾～＾）
+                await Task.CompletedTask;
+            },
+            evalAsync: async (input) =>
+            {
+                // 最初のスペースで分割（2つに分ける）
+                string[] parts = input.Split(' ', 2, StringSplitOptions.RemoveEmptyEntries);
+                if (parts.Length == 0) throw new UnreachableException("空っぽだぜ");
 
-        while (true)
-        {
-            // 最初のスペースで分割（2つに分ける）
-            string[] parts = input.Split(' ', 2, StringSplitOptions.RemoveEmptyEntries);
-            if (parts.Length == 0) throw new UnreachableException("空っぽだぜ");
+                // "Apple Banana Cherry" なら。
+                string commandName = parts[0];                    // "Apple"
+                string rest = parts.Length > 1 ? parts[1] : "";  // "Banana Cherry"
 
-            // "Apple Banana Cherry" なら。
-            string commandName = parts[0];                    // "Apple"
-            string rest = parts.Length > 1 ? parts[1] : "";  // "Banana Cherry"
+                //loggingSvc.Others.LogDebug($"最初の部分   : {commandName}");
+                //loggingSvc.Others.LogDebug($"残りの部分   : {rest}");
 
-            loggingSvc.Others.LogDebug($"最初の部分   : {commandName}");
-            loggingSvc.Others.LogDebug($"残りの部分   : {rest}");
+                if (commandName == "quit") return MuzRequestType.Exit;
 
-            if (commandName == "quit") break;
-            if (commandName == "usi")
-            {
-                // 将棋の思考エンジンの名前と開発者名を返すぜ（＾▽＾）
-                SendOutput($"id name {appSettings.ShogiEngineName}\nid author {appSettings.ShogiEngineAuthor}\nusiok\n", loggingSvc);
-            }
-            else if (commandName == "isready")
-            {
-                // エンジンが準備できたら、"readyok" を返すぜ（＾▽＾）
-                SendOutput($"readyok\n", loggingSvc);
-            }
-            else if (commandName == "setoption")
-            {
-                // TODO: エンジンのオプションを設定するコマンド。これが来たら、オプションを変更する。
-            }
-            else if (commandName == "usinewgame")
-            {
-                // 新しいゲームの開始を知らせるコマンド。これが来たら、前のゲームの情報をクリアする。
-            }
-            // ----------------------------------------
-            // 局面
-            // ----------------------------------------
-            //      - 例： `position sfen lnsgkgsnl/9/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL w - 1 moves 5a6b 7g7f 3a3b`
-            else if (commandName == "position")
-            {
-            }
-            else if (commandName == "go")
-            {
-                // TODO: 思考開始のコマンド。これが来たら、思考を開始する。
-                //usiOperation.Go(gameStats, pos, ssCmd);
+                if (commandName == "usi")
+                {
+                    // 将棋の思考エンジンの名前と開発者名を返すぜ（＾▽＾）
+                    SendOutput($"id name {appSettings.ShogiEngineName}\nid author {appSettings.ShogiEngineAuthor}\nusiok\n", loggingSvc);
+                    return MuzRequestType.None;
+                }
 
-                SendOutput($"bestmove resign\n", loggingSvc);   // とりあえず投了を返すぜ（＾ｑ＾）
-            }
-            // ----------------------------------------
-            // 以下、独自実装
-            // ----------------------------------------
-            // ----------------------------------------
-            // 局面の表示
-            // ----------------------------------------
-            else if (commandName == "pos")
-            {
-                await onExternalCommand(new MuzPositionModelReadonly(pos), commandName, rest);
-            }
-            // ----------------------------------------
-            // 無いよ
-            // ----------------------------------------
-            else
-            {
+                if (commandName == "isready")
+                {
+                    // エンジンが準備できたら、"readyok" を返すぜ（＾▽＾）
+                    SendOutput($"readyok\n", loggingSvc);
+                    return MuzRequestType.None;
+                }
+
+                if (commandName == "setoption")
+                {
+                    // TODO: エンジンのオプションを設定するコマンド。これが来たら、オプションを変更する。
+                    return MuzRequestType.None;
+                }
+
+                if (commandName == "usinewgame")
+                {
+                    // 新しいゲームの開始を知らせるコマンド。これが来たら、前のゲームの情報をクリアする。
+                    return MuzRequestType.None;
+                }
+
+                // ----------------------------------------
+                // 局面
+                // ----------------------------------------
+                //      - 例： `position sfen lnsgkgsnl/9/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL w - 1 moves 5a6b 7g7f 3a3b`
+                if (commandName == "position")
+                {
+                    return MuzRequestType.None;
+                }
+
+                if (commandName == "go")
+                {
+                    // TODO: 思考開始のコマンド。これが来たら、思考を開始する。
+                    //usiOperation.Go(gameStats, pos, ssCmd);
+
+                    SendOutput($"bestmove resign\n", loggingSvc);   // とりあえず投了を返すぜ（＾ｑ＾）
+                    return MuzRequestType.None;
+                }
+
+                // ----------------------------------------
+                // 以下、独自実装
+                // ----------------------------------------
+                // ----------------------------------------
+                // 局面の表示
+                // ----------------------------------------
+                if (commandName == "pos")
+                {
+                    await onExternalCommand(new MuzPositionModelReadonly(pos), commandName, rest);
+                    return MuzRequestType.None;
+                }
+
+                // ----------------------------------------
+                // 無いよ
+                // ----------------------------------------
                 SendOutput("そんなコマンド無い（＾～＾）\n", loggingSvc);
-            }
+                return MuzRequestType.None;
 
-            // 返り値は空文字列ではないぜ（＾～＾）
-            input = GetInput(loggingSvc);
-        }
+
+            }
+        );
     }
 
 
